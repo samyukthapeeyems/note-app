@@ -1,16 +1,16 @@
 import { Date, Schema, model } from 'mongoose';
 
-interface INote{
+interface INote {
     title: string;
     tagline: string;
     body: string;
     author: string;
-    pinnedTime: Date;
+    pinnedTime?: Date;
 }
 
 const noteSchema = new Schema<INote>({
     title: {
-        type: String, 
+        type: String,
         required: true
     },
     tagline: {
@@ -27,7 +27,7 @@ const noteSchema = new Schema<INote>({
     },
     pinnedTime: {
         type: Date,
-        required: true
+        required: false
     },
 }, { timestamps: true });
 
