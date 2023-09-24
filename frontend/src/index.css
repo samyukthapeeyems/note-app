@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.icon-xs {
+    @apply w-4 h-4;
+  }
+  
+  .icon-sm {
+    @apply w-5 h-5;
+  }
+  
+  .icon {
+    @apply w-6 h-6;
+  }
+  
+  .icon-lg {
+    @apply w-7 h-7;
+  }
+  
+  .icon-xl {
+    @apply w-8 h-8;
+  }
+  
+  /* btn */
+  .btn {
+    @apply hover:bg-red-500 hover:bg-opacity-50 hover:text-gray-900 text-gray-700 p-2.5 rounded-full;
+  }
+  
