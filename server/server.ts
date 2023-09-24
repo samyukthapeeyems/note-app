@@ -1,13 +1,55 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import MongooseConnection from './src/utils/db';
+import logger from './src/utils/logger';
+import NoteRoutes from './src/route/note.route';
 
+dotenv.config({ path: '.env' });
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use('/notes', NoteRoutes)
 
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, TypeScript Express!');
-  });
+let debugCallback;
 
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });  
+const mongooseConnection = new MongooseConnection({
+  mongoUrl: process.env.MONGO_URL ?? '',
+  debugCallback,
+  onStartConnection: () => { },
+  onConnectionError: (error, mongoUrl) => logger.log({
+    level: 'error',
+    message: `Could not connect to MongoDB at ${mongoUrl}`,
+    error
+  }),
+  onConnectionRetry: mongoUrl => logger.info(`Retrying to MongoDB at ${mongoUrl}`)
+});
+
+const serve = () => app.listen(PORT, () => {
+  logger.info(`server started at http://localhost:${PORT}`);
+});
+
+// Close the Mongoose connection, when receiving SIGINT
+process.on('SIGINT', async () => {
+  logger.info('Gracefully shutting down');
+  logger.info('Closing the MongoDB connection');
+  try {
+    await mongooseConnection.close(true);
+    logger.info('Mongo connection closed successfully');
+  } catch (err) {
+    logger.log({
+      level: 'error',
+      message: 'Error shutting closing mongo connection',
+      error: err
+    });
+  }
+  process.exit(0);
+});
+
+//start server
+mongooseConnection.connect(mongoUrl => {
+  logger.info(`Connected to MongoDB at ${mongoUrl}`);
+  serve();
+});
