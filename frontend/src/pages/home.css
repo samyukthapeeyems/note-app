@@ -1,0 +1,11 @@
+.squeeze-animation {
+    transition: transform 0.2s ease;
+}
+
+.squeeze-animation:hover {
+    transform: scale(0.9);
+}
+
+.chevron-btn{
+    @apply flex items-center p-2 rounded-full hover:bg-gray-300 squeeze-animation ;
+}

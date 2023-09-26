@@ -1,7 +1,7 @@
 export default function Card() {
     return (
         <>
-            <div class="max-w-sm rounded-xl overflow-hidden border border-amber-800 border-opacity-10 m-5 bg-amber-800 bg-opacity-10 backdrop-blur-lg drop-shadow-lg">
+            <div class="max-w-sm rounded-xl overflow-hidden border border-amber-800 border-opacity-10 m-5 bg-amber-800 bg-opacity-10 backdrop-blur-lg drop-shadow-lg squeeze-animation">
                 {/* <button className="btn">
                 <svg
               xmlns="http://www.w3.org/2000/svg"

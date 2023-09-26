@@ -1,3 +1,4 @@
+import './form.css'
 export default function Form() {
     return(
         <form className="w-1/2">
@@ -15,7 +16,7 @@ export default function Form() {
               <textarea id="body" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write a note..." required></textarea>
             </div>
             <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-              <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-green-600 rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 hover:bg-green-700">
+              <button type="submit" class="submit-btn">
                 Save
               </button>
               {/* <div class="flex pl-0 space-x-1 sm:pl-2">

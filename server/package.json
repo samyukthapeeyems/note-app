@@ -20,9 +20,9 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node ./dist/server.js",
     "build": "tsc",
-    "dev": "nodemon server.ts"
+    "dev": "nodemon ./server.ts"
   },
   "author": "",
   "license": "ISC",
