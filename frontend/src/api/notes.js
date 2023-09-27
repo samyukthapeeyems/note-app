@@ -1,49 +1,49 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://note-app-assignment.onrender.com/api/notes';
+const API_BASE_URL = 'https://note-app-assignment.onrender.com/notes';
 
-export const getNotes = async (page) => {
+// Function to fetch notes with pagination
+export const getNotes = async (page, pageSize) => {
     try {
         const response = await axios.get(`${API_BASE_URL}?page=${page}&pageSize=${pageSize}`);
-     
+        return response.data;
     } catch (error) {
-        console.error('Error fetching notes:', error);
+        throw new Error('Error fetching notes:', error);
     }
 };
 
+// Function to delete a note
 export const deleteNote = async (noteId) => {
     try {
         await axios.delete(`${API_BASE_URL}/${noteId}`);
-        // Refresh the list of notes after deletion
     } catch (error) {
-        console.error('Error deleting note:', error);
+        throw new Error('Error deleting note:', error);
     }
 };
 
+// Function to edit a note
 export const editNote = async (noteId, newText) => {
     try {
         await axios.put(`${API_BASE_URL}/${noteId}`, { text: newText });
-        // Refresh the list of notes after editing
- 
     } catch (error) {
-        console.error('Error editing note:', error);
+        throw new Error('Error editing note:', error);
     }
 };
 
+// Function to pin a note
 export const pinNote = async (noteId) => {
     try {
         await axios.put(`${API_BASE_URL}/${noteId}/pin`);
-        // Refresh the list of notes after pinning
     } catch (error) {
-        console.error('Error pinning note:', error);
+        throw new Error('Error pinning note:', error);
     }
 };
 
+// Function to unpin a note
 export const unpinNote = async (noteId) => {
     try {
         await axios.put(`${API_BASE_URL}/${noteId}/unpin`);
-        // Refresh the list of notes after unpinning
     } catch (error) {
-        console.error('Error unpinning note:', error);
+        throw new Error('Error unpinning note:', error);
     }
 };

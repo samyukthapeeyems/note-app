@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import cors from 'cors'
 import MongooseConnection from './src/utils/db';
 import logger from './src/utils/logger';
 import NoteRoutes from './src/route/note.route';
@@ -8,12 +9,23 @@ import NoteRoutes from './src/route/note.route';
 dotenv.config({ path: '.env' });
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+//cors
+let corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  optionsSuccessStatus: 200 
+}
+// app.use(cors(corsOptions));
+app.use(cors())
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/notes', NoteRoutes)
 
-
 let debugCallback;
+
+
+
 
 const mongooseConnection = new MongooseConnection({
   mongoUrl: process.env.MONGO_URL ?? '',
