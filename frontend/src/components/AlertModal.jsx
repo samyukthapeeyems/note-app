@@ -8,7 +8,7 @@ export default function AlertModal({ title, message, onYesClick, onNoClick }) {
         <div className="flex justify-end">
           <button
             onClick={onYesClick}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mr-2"
+            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded mr-2"
           >
             Yes
           </button>

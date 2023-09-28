@@ -66,34 +66,30 @@ export default function Home() {
 
       <Navbar />
       {isLoading ? <LoadingScreen> </LoadingScreen> :
-
         <div className=" flex flex-col justify-center items-center">
           <div className="md:max-h-xl">
-
             <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
-              {notes.map((note) => <Card note={note} actions={{
-                openEditModal, deleteNote, handlePinNote, handleUnpinNote
-              }} />)}
-
+              {notes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinNote, handleUnpinNote }} />)}
             </div>
-
             <Modal
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}
               onRequestClose={closeEditModal}
-              contentLabel="Note"
+              contentLabel="Example Modal"
+              className={"p-6  shadow-lg"}
               style={{
                 overlay: {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+
                 },
                 content: {
                   inset: "0px",
                   padding: 0,
                   margin: 0,
                   position: "relative",
-                  width: "50%",
+                  width: "40%",
                   borderRadius: "8px",
                   border: 0,
                   overflow: "auto",
@@ -103,6 +99,8 @@ export default function Home() {
               <Form note={editNote} actions={{ closeEditModal, handleEditNote }}></Form>
             </Modal>
           </div>
+
+
 
           <div className="flex">
             <button class="chevron-btn ml-5">
@@ -137,5 +135,4 @@ export default function Home() {
       }
     </>
   )
-  
 }
