@@ -1,7 +1,12 @@
 import './form.css'
 export default function Form() {
+
+  const closeModal = () => {
+    document.getElementById("button").classList.remove("hidden");
+  document.getElementById("modal").classList.add("hidden");
+};
     return(
-        <form className="w-1/2">
+        <form className="w-1/2 ">
           <div class="w-full mb-4 border border-gray-200 rounded-lg bg-white  dark:border-gray-600">
             <div class="px-4 py-4 bg-white rounded-t-lg">
               <label for="title" class="sr-only ">Title</label>
@@ -39,6 +44,9 @@ export default function Form() {
                   <span class="sr-only">Upload image</span>
                 </button>
               </div> */}
+              <div class="mt-12 md:mt-14 w-full flex justify-center">
+            <button onClick={closeModal} class=" bg-black dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+          </div>
             </div>
           </div>
         </form>
