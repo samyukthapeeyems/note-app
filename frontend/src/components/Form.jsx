@@ -1,30 +1,52 @@
 import './form.css'
-export default function Form() {
+import { useForm } from "react-hook-form"
 
-  const closeModal = () => {
-    document.getElementById("button").classList.remove("hidden");
-  document.getElementById("modal").classList.add("hidden");
-};
-    return(
-        <form className="w-1/2 ">
-          <div class="w-full mb-4 border border-gray-200 rounded-lg bg-white  dark:border-gray-600">
-            <div class="px-4 py-4 bg-white rounded-t-lg">
-              <label for="title" class="sr-only ">Title</label>
-              <input id="title" class="w-full px-0 text-md font-bold text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Title" required />
-            </div>
-            <div class="px-4 py-1 bg-white ">
-              <label for="tagline" class="sr-only">Tagline</label>
-              <input id="tagline" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Tagline" required />
-            </div>
-            <div class="px-4 py-10 bg-white ">
-              <label for="body" class="sr-only">Body</label>
-              <textarea id="body" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write a note..." required></textarea>
-            </div>
-            <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-              <button type="submit" class="submit-btn">
-                Save
-              </button>
-              {/* <div class="flex pl-0 space-x-1 sm:pl-2">
+export default function Form({ note, actions }) {
+
+  console.log("hello")
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()  
+
+  const onSubmit = (data) => console.log(data)
+
+  console.log(watch("title")) // watch input value by passing the name of it
+
+  return (
+    <form className="w-1/2 " onSubmit={handleSubmit(onSubmit)}>
+      <div class="w-full mb-4 border border-gray-200 rounded-lg bg-white  dark:border-gray-600">
+        <div class="px-4 py-4 bg-white rounded-t-lg">
+          <label for="title" class="sr-only ">Title</label>
+          <input id="title" class="w-full px-0 text-md font-bold text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Title" defaultValue={note.title} {...register("title")} />
+        </div>
+        <div class="px-4 py-1 bg-white ">
+          <label for="tagline" class="sr-only">Tagline</label>
+          <input id="tagline" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Tagline" defaultValue={note.tagline} {...register("tagline")}/>
+        </div>
+        <div class="px-4 py-10 bg-white ">
+          <label for="body" class="sr-only">Body</label>
+          <textarea id="body" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write a note..." defaultValue={note.body} {...register("body")}></textarea>
+        </div>
+        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+          <input type="submit" className="submit-btn" value={"Save"} />
+        
+
+          <div class="mt-12 md:mt-14 w-full flex justify-center">
+            <button onClick={actions.closeEditModal} class=" bg-black dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+
+
+
+{/* <div class="flex pl-0 space-x-1 sm:pl-2">
                 <button type="button" class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                   <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 20">
                     <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6" />
@@ -44,11 +66,3 @@ export default function Form() {
                   <span class="sr-only">Upload image</span>
                 </button>
               </div> */}
-              <div class="mt-12 md:mt-14 w-full flex justify-center">
-            <button onClick={closeModal} class=" bg-black dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Close</button>
-          </div>
-            </div>
-          </div>
-        </form>
-    )
-}
