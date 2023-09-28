@@ -3,9 +3,9 @@
 }
 
 .squeeze-animation:hover {
-    transform: scale(0.9);
+    transform: scale(1.1);
 }
 
 .chevron-btn{
-    @apply flex items-center p-2 rounded-full hover:bg-gray-300 squeeze-animation ;
+    @apply flex items-center p-1 rounded-full hover:bg-gray-300 squeeze-animation ;
 }
