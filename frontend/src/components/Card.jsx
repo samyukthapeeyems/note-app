@@ -108,7 +108,7 @@ export default function Card({ note, actions }) {
 
                     <button className="btn" onClick={async(event) => {
                         event.stopPropagation();
-                        await actions.handleDeleteNote(note._id);
+                        await actions.deleteNote(note._id);
                         }}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
