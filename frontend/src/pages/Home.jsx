@@ -1,12 +1,18 @@
+import { useEffect } from "react";
 import Card from "../components/Card";
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
 import './home.css'
+import { useNotes } from "../context/NoteContext";
 
 export default function Home() {
   let cards = [1, 2, 3, 4, 5, 6];
-
-  
+  const { fetchNotes, notes } = useNotes();
+  useEffect(async () => {
+    (async () => {
+      await fetchNotes()
+    })()
+  }, [])
   return (
     <>
 
@@ -24,7 +30,7 @@ export default function Home() {
       </div> */}
         <button class="chevron-btn ml-5 ">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
         </button>
 
@@ -34,7 +40,7 @@ export default function Home() {
 
 
         <div id="button" class="container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
-        {cards.map((x) => <Card />)}
+        {notes.map((note) => <Card data={note} />)}
         </div>
 
       <div id="modal" class="hidden container ml-52 md:px-10 py-20">
@@ -45,7 +51,7 @@ export default function Home() {
 
         <button class="chevron-btn mr-5">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
         </button>
 
