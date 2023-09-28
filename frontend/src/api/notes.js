@@ -30,6 +30,15 @@ export const editNote = async (noteId, data) => {
     }
 };
 
+//Function to create a note
+export const createNote = async (data) => {
+    try{
+        await axios.post(`${API_BASE_URL}`, data);
+    } catch (error) {
+        throw new Error('Error creating note:', error);
+    }
+}
+
 // Function to pin a note
 export const pinNote = async (noteId) => {
     try {

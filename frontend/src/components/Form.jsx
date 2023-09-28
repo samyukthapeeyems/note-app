@@ -20,7 +20,7 @@ export default function Form({ note, actions }) {
 
   return (
     <form className="" onSubmit={handleSubmit(onSubmit)}>
-      <div class="w-full border-gray-200 border-0 rounded-lg bg-white  dark:border-gray-600">
+      <div class="w-full  border-0 rounded-lg bg-white ">
         <div class="px-4 py-4 bg-white rounded-t-lg">
           <label for="title" class="sr-only ">Title</label>
           <input id="title" class="w-full px-0 text-md font-bold text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Title" defaultValue={note.title} {...register("title")} />
@@ -34,10 +34,10 @@ export default function Form({ note, actions }) {
           <textarea id="body" rows="9" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write a note..." defaultValue={note.body} {...register("body")}></textarea>
         </div>
         <div class="flex items-center justify-between px-3 py-2 border-0 dark:border-gray-600">
-          <input type="submit" className="bg-green-600 h-8 px-4 text-sm text-indigo-100 transition-colors duration-150  cursor-pointer  rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-300 hover:bg-green-700" value="Save" />
+          <input type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mr-2" value="Save" />
           {/* <input class="h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800" type="submit" value="Input" /> */}
 
-            <button onClick={actions.closeEditModal} class=" bg-black dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+            <button onClick={actions.closeEditModal} class=" bg-gray-400 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded">Close</button>
         </div>
       </div>
     </form>

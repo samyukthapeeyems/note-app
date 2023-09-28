@@ -70,6 +70,7 @@ export default function Home() {
             onAfterOpen={afterOpenModal}
             onRequestClose={closeEditModal}
             contentLabel="Example Modal"
+            className={"p-6  shadow-lg"}
             style={{
               overlay: {
                 display: "flex",
@@ -82,7 +83,7 @@ export default function Home() {
                 padding: 0,
                 margin: 0,
                 position: "relative",
-                width: "50%",
+                width: "40%",
                 borderRadius: "8px",
                 border: 0,
                 overflow: "auto",
@@ -113,14 +114,14 @@ export default function Home() {
             </svg>
           </button>
         </div>
-        {isModalOpen && (
+        {/* {isModalOpen && (
         <AlertModal
           title="Alert Title"
           message="This is an example alert message."
           onYesClick={()=>{}}
           onNoClick={()=>{}}
         />
-      )}
+      )} */}
 
       </div>
 
