@@ -11,13 +11,16 @@ export default function Form({ note, actions }) {
     formState: { errors },
   } = useForm()  
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    await actions.handleEditNote(note._id, data);
+    actions.closeEditModal();
+  }
 
   console.log(watch("title")) // watch input value by passing the name of it
 
   return (
-    <form className="w-1/2 " onSubmit={handleSubmit(onSubmit)}>
-      <div class="w-full mb-4 border border-gray-200 rounded-lg bg-white  dark:border-gray-600">
+    <form className="" onSubmit={handleSubmit(onSubmit)}>
+      <div class="w-full border-gray-200 border-0 rounded-lg bg-white  dark:border-gray-600">
         <div class="px-4 py-4 bg-white rounded-t-lg">
           <label for="title" class="sr-only ">Title</label>
           <input id="title" class="w-full px-0 text-md font-bold text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Title" defaultValue={note.title} {...register("title")} />
@@ -28,15 +31,13 @@ export default function Form({ note, actions }) {
         </div>
         <div class="px-4 py-10 bg-white ">
           <label for="body" class="sr-only">Body</label>
-          <textarea id="body" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write a note..." defaultValue={note.body} {...register("body")}></textarea>
+          <textarea id="body" rows="9" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write a note..." defaultValue={note.body} {...register("body")}></textarea>
         </div>
-        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-          <input type="submit" className="submit-btn" value={"Save"} />
-        
+        <div class="flex items-center justify-between px-3 py-2 border-0 dark:border-gray-600">
+          <input type="submit" className="bg-green-600 h-8 px-4 text-sm text-indigo-100 transition-colors duration-150  cursor-pointer  rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-300 hover:bg-green-700" value="Save" />
+          {/* <input class="h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800" type="submit" value="Input" /> */}
 
-          <div class="mt-12 md:mt-14 w-full flex justify-center">
             <button onClick={actions.closeEditModal} class=" bg-black dark:text-white dark:border-white w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Close</button>
-          </div>
         </div>
       </div>
     </form>

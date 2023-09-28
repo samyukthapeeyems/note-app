@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <div style={{backgroundImage: `url(${imgUrl})`}} className='h-full w-full bg-cover '>
+      <div style={{backgroundImage: `url(${imgUrl})`}} className='h-screen w-screen bg-cover '>
     <Home></Home>
 
     </div>

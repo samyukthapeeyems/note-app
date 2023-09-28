@@ -9,3 +9,16 @@
 .chevron-btn{
     @apply flex items-center p-1 rounded-full hover:bg-gray-300 squeeze-animation ;
 }
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}

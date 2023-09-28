@@ -4,7 +4,7 @@ export default function Card({ note, actions }) {
 
     return (
         <>
-            <div onClick={() => actions.openEditModal(note)} class="max-w-sm rounded-xl overflow-hidden border border-amber-800 border-opacity-10 m-5 bg-amber-800 bg-opacity-10 backdrop-blur-lg drop-shadow-lg squeeze-animation">
+            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden border border-amber-800 border-opacity-10 m-5 bg-amber-800 bg-opacity-10 backdrop-blur-lg drop-shadow-lg squeeze-animation">
                 {/* <button className="btn">
                 <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,6 @@ export default function Card({ note, actions }) {
               />
             </svg>
                 </button> */}
-
 
                 <div class="px-6 py-4 ">
                     <div class="font-bold text-gray-800 text-xl mb-2">{note.title}</div>
@@ -107,7 +106,10 @@ export default function Card({ note, actions }) {
                     </button> */}
 
 
-                    <button className="btn">
+                    <button className="btn" onClick={async(event) => {
+                        event.stopPropagation();
+                        await actions.handleDeleteNote(note._id);
+                        }}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon-sm text-gray-600"

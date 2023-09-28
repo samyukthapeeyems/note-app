@@ -22,9 +22,9 @@ export const deleteNote = async (noteId) => {
 };
 
 // Function to edit a note
-export const editNote = async (noteId, newText) => {
+export const editNote = async (noteId, data) => {
     try {
-        await axios.put(`${API_BASE_URL}/${noteId}`, { text: newText });
+        await axios.patch(`${API_BASE_URL}/${noteId}`, data);
     } catch (error) {
         throw new Error('Error editing note:', error);
     }
