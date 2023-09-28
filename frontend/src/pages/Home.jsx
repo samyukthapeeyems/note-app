@@ -39,7 +39,7 @@ export default function Home() {
     setEditNote("")
   }
 
-  
+
 
   async function deleteNote(noteId) {
     setAlertProps({
@@ -122,25 +122,20 @@ export default function Home() {
             <AlertModal
               title={alertProps.title}
               message={alertProps.message}
-              onYesClick={async () =>{ 
+              onYesClick={async () => {
                 await alertProps.handleAccept(...alertProps.handleAcceptParams)
-                if(alertProps) setAlertProps(undefined)
+                if (alertProps) setAlertProps(undefined)
               }}
-              onNoClick={async() =>{ 
+              onNoClick={async () => {
                 await alertProps.handleReject(...alertProps.handleRejectParams)
-                if(alertProps) setAlertProps(undefined)
+                if (alertProps) setAlertProps(undefined)
               }}
             />
           )}
 
         </div>
-
       }
-
-
-
-
-
     </>
   )
+  
 }
