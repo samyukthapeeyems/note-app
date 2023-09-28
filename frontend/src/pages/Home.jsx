@@ -8,11 +8,11 @@ import { useNotes } from "../context/NoteContext";
 export default function Home() {
   let cards = [1, 2, 3, 4, 5, 6];
   const { fetchNotes, notes } = useNotes();
-  useEffect(async () => {
+  useEffect(() => {
     (async () => {
       await fetchNotes()
     })()
-  }, [])
+  }, [notes])
   return (
     <>
 
@@ -35,7 +35,7 @@ export default function Home() {
         </button>
 
         <div className="grid grid-cols-1 mx-10 md:mx-20 lg:mx-20 md:grid-cols-2 lg:grid-cols-3">
-          {cards.map((x) => <Card />)}
+          {notes.map((note) => <Card data={note} />)}
         </div>
 
 

@@ -27,8 +27,7 @@ export function NotesProvider({ children }) {
     const fetchNotes = async (page) => {
         try {
             const data = await getNotes(page, 6);
-            console.log(data)
-            dispatch({ type: 'SET_NOTES', payload: data.notes });
+            dispatch({ type: 'SET_NOTES', payload: data });
             dispatch({ type: 'SET_TOTAL_PAGES', payload: data.totalPages });
         } catch (error) {
             console.error(error.message);
