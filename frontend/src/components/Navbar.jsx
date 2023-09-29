@@ -23,27 +23,21 @@ export default function Navbar() {
   </div> */}
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">
-          {/* <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-gray-600 mr-4">
-              Docs
-            </a>
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-gray-600 mr-4">
-              Examples
-            </a>
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-gray-600">
-              Blog
-            </a> */}
+          
 
           <ClickAwayListener onClickAway={handleClickAway} >
-            <div className="space-x-60">
-              <input className="border-amber-800 border-opacity-10 bg-amber-800 bg-opacity-10 backdrop-blur-lg appearance-none border rounded-lg w-1/3 py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Title" onFocus={() => setShowTextField(true)} />
-              {/* <input className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"/> */}
-
+            <div className='flex flex-col'>
               {showTextField &&
                 <>
-                  <input className="border-amber-800 border-opacity-10 bg-amber-800 bg-opacity-10 backdrop-blur-lg appearance-none border rounded-lg w-1/3 py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Add a note" />
+                  <input className="bg-white p-6 rounded-lg shadow-lg appearance-none w-1/3 py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline" id="title" type="text" placeholder="Title" />
                 </>
-
               }
+
+              <input className="  bg-white p-6 appearance-none shadow-lg rounded-lg w-1/3 py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Add a note..." onFocus={() => setShowTextField(true)} />
+              {/* <input className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"/> */}
+
+
+
             </div>
           </ClickAwayListener>
 
