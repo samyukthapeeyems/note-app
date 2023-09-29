@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { getNotes, deleteNote, editNote, pinNote, unpinNote, createNote } from '../api/notes';
+import { getNotes, deleteNote, editNote, pinNote, unpinNote, createNote, getPinnedNotes } from '../api/notes';
 import { notesReducer } from './NoteReducer';
 
 const NotesContext = createContext();
@@ -11,6 +11,7 @@ export function useNotes() {
 export function NotesProvider({ children }) {
     const initialState = {
         notes: [],
+        pinnedNotes: [],
         editedNote: null,
         currentPage: 1,
         totalPages: 1,
@@ -18,7 +19,7 @@ export function NotesProvider({ children }) {
 
 
     const [state, dispatch] = useReducer(notesReducer, initialState);
-    const { notes, editedNote, currentPage, totalPages } = state;
+    const { notes, editedNote, currentPage, totalPages ,pinnedNotes } = state;
 
     useEffect(() => {
         fetchNotes(currentPage);
@@ -26,8 +27,10 @@ export function NotesProvider({ children }) {
 
     const fetchNotes = async (page) => {
         try {
-            const data = await getNotes(page, 6);
+            const data = await getNotes(page, 4);
+            const pinned = await getPinnedNotes();
             dispatch({ type: 'SET_NOTES', payload: data.notes });
+            dispatch({ type: 'SET_PINNED_NOTES', payload: pinned });
             dispatch({ type: 'SET_TOTAL_PAGES', payload: data.total/4 });
         } catch (error) {
             console.error(error.message);
@@ -87,6 +90,7 @@ export function NotesProvider({ children }) {
         editedNote,
         currentPage,
         totalPages,
+        pinnedNotes,
         fetchNotes,
         handleDeleteNote,
         handleEditNote,

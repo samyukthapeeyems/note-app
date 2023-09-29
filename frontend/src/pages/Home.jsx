@@ -12,30 +12,14 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-
-
 export default function Home() {
 
-  let itemsPerPage = 4;
-  let initialPage = 1;
-  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-  const [pageCount, setPageCount] = useState(1);
-  // const [itemOffset, setItemOffset] = useState(0);
-  // const endOffset = itemOffset + itemsPerPage;
-  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  // const currentItems = items.slice(itemOffset, endOffset);
-  // const pageCount = Math.ceil(items.length / itemsPerPage);
-  const [currentPage, setcurrentPage] = useState(0);
-
-
-  // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
-    setcurrentPage(event.selected);
-		handleFetch();
+  const handlePageClick = async (event) => {
+    console.log("ee", event.selected)
+    dispatch({ type: 'SET_CURRENT_PAGE', payload: event.selected + 1 });
   };
 
-  const { fetchNotes, notes, handleDeleteNote, handleEditNote, handlePinNote, handleUnpinNote } = useNotes();
+  const { fetchNotes,pinnedNotes, notes, handleDeleteNote, handleEditNote, handlePinNote, handleUnpinNote, totalPages, dispatch, currentPage } = useNotes();
 
 
   const [isLoading, setIsloading] = useState(false);
@@ -62,8 +46,6 @@ export default function Home() {
     setEditNote("")
   }
 
-
-
   async function deleteNote(noteId) {
     setAlertProps({
       title: "Delete Note",
@@ -77,9 +59,9 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      // setIsloading(true);
+      setIsloading(true);
       await fetchNotes();
-      // setIsloading(false)
+      setIsloading(false)
     })()
   }, [])
 
@@ -91,33 +73,36 @@ export default function Home() {
       {isLoading ? <LoadingScreen> </LoadingScreen> :
         <div className=" flex flex-col justify-evenly items-center ">
           <div className="md:max-h-xl">
+            {/* Pinned Notes */}
+            <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
+              {pinnedNotes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinNote, handleUnpinNote }} />)}
+            </div>
+            {/* Notes */}
             <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
               {notes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinNote, handleUnpinNote }} />)}
             </div>
             <div>
-            <ReactPaginate
-              containerClassName="pagination-class"
-              breakLabel="..."
-              nextLabel={
-<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
-                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 6l6 6l-6 6" />
-              </svg>
-              }
-              pageClassName="page-btn"
-              previousClassName="chevron-btn"
-              nextClassName="chevron-btn"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel={
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
-                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m15 6l-6 6l6 6" />
-              </svg>
-              }
-              renderOnZeroPageCount={null}
-            /></div>
-
-
+              <ReactPaginate
+                containerClassName="pagination-class"
+                breakLabel="..."
+                nextLabel={
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
+                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 6l6 6l-6 6" />
+                  </svg>
+                }
+                pageClassName="page-btn"
+                previousClassName="chevron-btn"
+                nextClassName="chevron-btn"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel={
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
+                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m15 6l-6 6l6 6" />
+                  </svg>
+                }
+                renderOnZeroPageCount={null}
+              /></div>
 
             <Modal
               isOpen={modalIsOpen}
@@ -151,19 +136,7 @@ export default function Home() {
 
 
 
-          <div className="flex ">
-            {/* <button class="chevron-btn ml-5">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
-                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m15 6l-6 6l6 6" />
-              </svg>
-            </button> */}
 
-            {/* <button class="chevron-btn mr-5">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
-                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 6l6 6l-6 6" />
-              </svg>
-            </button> */}
-          </div>
 
           {(alertProps) && (
             <AlertModal

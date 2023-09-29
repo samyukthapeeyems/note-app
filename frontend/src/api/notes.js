@@ -5,7 +5,18 @@ const API_BASE_URL = 'https://note-app-assignment.onrender.com/notes';
 // Function to fetch notes with pagination
 export const getNotes = async (page, pageSize) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}?page=${page}&pageSize=${pageSize}`);
+        const response = await axios.get(`${API_BASE_URL}?page=${page}&limit=${pageSize}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching notes:', error);
+    }
+};
+
+
+// Function to fetch notes with pagination
+export const getPinnedNotes = async () => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/pinned`);
         return response.data;
     } catch (error) {
         throw new Error('Error fetching notes:', error);
