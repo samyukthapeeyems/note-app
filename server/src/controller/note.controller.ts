@@ -1,9 +1,11 @@
 import Note from '../model/note.model';
 import { Request, Response } from 'express';
 import { CRequest } from '../middleware/pagination';
+import { Date } from 'mongoose';
 
 export const getAllNote = async (req: CRequest, res: Response) => {
     try {
+        console.log(req.query.limit, req.query.page)
         let result = await Note.find({}).skip(req.skip!) //Notice here
             .limit(req.query.limit!)
 
@@ -91,5 +93,29 @@ export const deleteNote = async (req: Request, res: Response) => {
     }
 }
 
+export const toggleNotePin = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        let note = await Note.findById(id);
 
+        if (!note) throw new Error("Invalid note id")
+
+        if (note.pinnedTime !== undefined)
+            note.pinnedTime = undefined;
+
+        else
+            note.pinnedTime = new Date()
+
+        let result = await note.save();
+
+        res.json({
+            status: "note pinned",
+            doc: result?.toJSON()
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Unable to pim note",
+        });
+    }
+}
 

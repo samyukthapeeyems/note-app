@@ -1,4 +1,4 @@
-import { Date, Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 interface INote {
     title?: string;
