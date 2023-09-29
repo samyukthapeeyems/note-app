@@ -6,8 +6,17 @@
     transform: scale(1.1);
 }
 
+.page-btn {
+    @layer text-xl;
+    @apply  p-3 font-semibold rounded-full hover:bg-blue-600 hover:bg-opacity-30 squeeze-animation;
+}
+
 .chevron-btn{
-    @apply flex items-center p-1 rounded-full hover:bg-blue-600 hover:bg-opacity-30 squeeze-animation ;
+    @apply p-1 rounded-full hover:bg-blue-600 hover:bg-opacity-30 squeeze-animation ;
+}
+
+.pagination-class {
+    @apply flex justify-center items-center m-3;
 }
 
 .ReactModal__Overlay {

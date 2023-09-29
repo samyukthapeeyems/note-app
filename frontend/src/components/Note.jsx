@@ -39,11 +39,11 @@ export default function Note({ note, actions }) {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {showTextField &&
                             <>
-                                <input className="text-input" id="title" type="text" placeholder="Title" {...register("title")} />
-                                <input className="text-input" id="tagline" type="text" placeholder="Tagline" {...register("tagline")} />
+                                <input className="title-input" id="title" type="text" placeholder="Title" {...register("title")} />
+                                <input className="tagline-input" id="tagline" type="text" placeholder="Tagline" {...register("tagline")} />
                             </>
                         }
-                        <textarea rows="1" className="text-input" id="body" type="text" placeholder="Add a note..." onFocus={() => setShowTextField(true)} {...register("body")} />
+                        <textarea rows="1" className="body-input" id="body" type="text" placeholder="Add a note..." onFocus={() => setShowTextField(true)} {...register("body")} />
                         {showTextField &&
                             <div class="action-bar">
                                 <button onClick={handleSubmit(onSubmit)} className="btn-submit">Save</button>

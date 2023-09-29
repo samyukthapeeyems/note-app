@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-      <div className='h-screen w-screen bg-gray-100'>
+      <div className='h-full w-screen bg-gray-100'>
     <Home></Home>
 
     </div>

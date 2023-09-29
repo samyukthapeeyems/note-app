@@ -1,12 +1,24 @@
 .note-container{
     @layer flex-cols;
-    @apply  bg-white rounded shadow-lg text-sm p-2 w-1/2 h-auto;
+    @apply  bg-white rounded-lg shadow-lg text-sm p-2 w-1/2 h-auto;
 }
 
-.text-input {
+.title-input {
     @layer focus:shadow-outline;
-    @apply bg-white p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none ;
+    @apply bg-white p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none text-lg border-0 outline-0 focus:ring-0  dark:placeholder-gray-400;
 }
+
+.tagline-input {
+    @layer focus:shadow-outline text-md;
+    @apply bg-white p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none border-0 outline-0 focus:ring-0  dark:placeholder-gray-400;
+}
+
+.body-input {
+    @layer focus:shadow-outline text-md;
+    @apply bg-white p-6 appearance-none w-full py-2 px-3 text-gray-700 font-medium leading-tight focus:outline-none border-0 outline-0 focus:ring-0  dark:placeholder-gray-400;
+}
+
+
 
 .action-bar{
     @apply flex items-center justify-between px-3 py-2 border-0 dark:border-gray-600;
