@@ -16,7 +16,10 @@ export const getAllNote = async (req: CRequest, res: Response) => {
 
 export const createNote = async (req: Request, res: Response) => {
     try {
-        const note = new Note(req.body);
+        let { body } = req
+        if (body.title === null && body.body === null)
+            throw new Error("Invalid params, note should contain a body or a title")
+        const note = new Note(body);
         await note.save();
         res.status(201).json({
             message: "Note created successfully"

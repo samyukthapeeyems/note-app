@@ -1,5 +1,8 @@
+import { useState } from "react";
+import ColorPicker from "./ColorPicker";
 export default function Card({ note, actions }) {
 
+    const [displayColorPicker, setDisplayColorPicker] = useState(false)
 
 
     return (
@@ -24,6 +27,7 @@ export default function Card({ note, actions }) {
             </svg>
                 </button> */}
 
+
                 <div class="px-6 py-4 ">
                     <div class="font-bold text-gray-800 text-xl mb-2">{note.title}</div>
                     <p class="text-gray-700 text-base">
@@ -33,8 +37,26 @@ export default function Card({ note, actions }) {
                 <div class="px-6 pt-1">
                     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">{note.tagline}</span>
                 </div>
-                <div className="w-full h-12 flex align-middle justify-end px-2.5 py-1">
-                    <button className="btn">
+
+
+
+
+
+                {/* COLOR */}
+
+
+
+                <div className="flex w-full h-12 align-middle justify-end px-2.5 py-1">
+                    {/* <div className="flex px-2 justify-end mt-3 items-center h-10"> */}
+                    {displayColorPicker && <ColorPicker></ColorPicker>}
+
+                    <button className="btn" onClick={(event) => {
+                        console.log("ff")
+                        event.stopPropagation();
+                        setDisplayColorPicker(true)
+                    }}
+                        onBlur={() => setDisplayColorPicker(false)}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon-xs"
@@ -51,7 +73,7 @@ export default function Card({ note, actions }) {
                         </svg>
                     </button>
 
-
+                    {/* labl */}
 
                     <button className="btn">
                         <svg
@@ -70,46 +92,11 @@ export default function Card({ note, actions }) {
                         </svg>
                     </button>
 
-
-                    {/* <button className="btn">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="text-gray-600"
-                            width="21"
-                            height="21"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                d="M17 19H7C5.89543 19 5 18.1046 5 17V7C5 5.89543 5.89543 5 7 5H17C18.1046 5 19 5.89543 19 7V17C19 18.1046 18.1046 19 17 19ZM7 7V17H17V7H7ZM11 15.362L8.3 12.715L9.7 11.285L11 12.556L14.3 9.289L15.7 10.711L11 15.361V15.362Z"
-                                fill="currentColor"
-                            ></path>
-                        </svg>
-                    </button>
-
-
-                    <button className="btn">
-                        <svg
-                            className="text-gray-600"
-                            width="16"
-                            height="16"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM5 5V19H19V5H5ZM17 13H7V11H17V13Z"
-                                fill="currentColor"
-                            ></path>
-                        </svg>
-
-                    </button> */}
-
-
-                    <button className="btn" onClick={async(event) => {
+                    {/* DLETE */}
+                    <button className="btn" onClick={async (event) => {
                         event.stopPropagation();
                         await actions.deleteNote(note._id);
-                        }}>
+                    }}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon-sm text-gray-600"
@@ -127,6 +114,7 @@ export default function Card({ note, actions }) {
                     </button>
                 </div>
             </div>
+
         </>
     )
 }
