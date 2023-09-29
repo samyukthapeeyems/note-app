@@ -1,0 +1,22 @@
+.note-container{
+    @layer flex-cols;
+    @apply  bg-white rounded shadow-lg text-sm lg:flex-grow p-2 w-1/2 h-auto;
+}
+
+.text-input {
+    @layer focus:shadow-outline;
+    @apply bg-white p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none ;
+}
+
+.action-bar{
+    @apply flex items-center justify-between px-3 py-2 border-0 dark:border-gray-600;
+}
+
+
+.btn-submit {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mr-2;
+}
+
+.btn-close {
+    @apply bg-gray-400 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded;
+}

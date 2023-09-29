@@ -8,8 +8,7 @@ import AlertModal from "../components/AlertModal";
 import LoadingScreen from "../components/LoadingScreen";
 
 import Modal from 'react-modal';
-import { COLORS } from "../constants/colours";
-import ColorPicker from "../components/ColorPicker";
+
 Modal.setAppElement('#root');
 
 

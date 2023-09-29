@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { getNotes, deleteNote, editNote, pinNote, unpinNote } from '../api/notes';
+import { getNotes, deleteNote, editNote, pinNote, unpinNote, createNote } from '../api/notes';
 import { notesReducer } from './NoteReducer';
 
 const NotesContext = createContext();
@@ -37,7 +37,7 @@ export function NotesProvider({ children }) {
     const handleDeleteNote = async (noteId) => {
         try {
             await deleteNote(noteId);
-            fetchNotes(currentPage);
+            await fetchNotes(currentPage);
         } catch (error) {
             console.error(error.message);
         }
@@ -46,8 +46,19 @@ export function NotesProvider({ children }) {
     const handleEditNote = async (noteId, newText) => {
         try {
             await editNote(noteId, newText);
-            fetchNotes(currentPage);
-            dispatch({ type: 'SET_NOTES', payload: data.notes });
+            await fetchNotes(currentPage);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+
+    const handleCreateNote = async (note) => {
+        try {
+            if (!note.title && !note.body)
+                throw new Error("Note should contain a body or title")
+            await createNote(note)
+            await fetchNotes(currentPage);
         } catch (error) {
             console.error(error.message);
         }
@@ -56,7 +67,7 @@ export function NotesProvider({ children }) {
     const handlePinNote = async (noteId) => {
         try {
             await pinNote(noteId);
-            fetchNotes(currentPage);
+            await fetchNotes(currentPage);
         } catch (error) {
             console.error(error.message);
         }
@@ -65,7 +76,7 @@ export function NotesProvider({ children }) {
     const handleUnpinNote = async (noteId) => {
         try {
             await unpinNote(noteId);
-            fetchNotes(currentPage);
+            await fetchNotes(currentPage);
         } catch (error) {
             console.error(error.message);
         }
@@ -81,6 +92,7 @@ export function NotesProvider({ children }) {
         handleEditNote,
         handlePinNote,
         handleUnpinNote,
+        handleCreateNote,
         dispatch,
     };
 
