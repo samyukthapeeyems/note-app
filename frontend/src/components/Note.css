@@ -5,17 +5,17 @@
 
 .title-input {
     @layer focus:shadow-outline;
-    @apply bg-transparent p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none text-lg border-0 outline-0 focus:ring-0  dark:placeholder-gray-400;
+    @apply bg-transparent p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none text-lg border-0 outline-0 focus:ring-0  dark:placeholder-gray-500;
 }
 
 .tagline-input {
     @layer focus:shadow-outline text-md;
-    @apply bg-transparent p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none border-0 outline-0 focus:ring-0  dark:placeholder-gray-400;
+    @apply bg-transparent p-6 appearance-none w-full py-2 px-3 text-gray-700 font-bold leading-tight focus:outline-none border-0 outline-0 focus:ring-0  dark:placeholder-gray-500;
 }
 
 .body-input {
     @layer focus:shadow-outline text-md;
-    @apply bg-transparent p-6 appearance-none w-full py-2 px-3 text-gray-700 font-medium leading-tight focus:outline-none border-0 outline-0 focus:ring-0  dark:placeholder-gray-400;
+    @apply bg-transparent p-6 appearance-none w-full py-2 px-3 text-gray-700 font-medium leading-tight focus:outline-none border-0 outline-0 focus:ring-0  dark:placeholder-gray-500;
 }
 
 
