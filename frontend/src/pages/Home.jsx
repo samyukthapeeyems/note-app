@@ -19,7 +19,7 @@ export default function Home() {
     dispatch({ type: 'SET_CURRENT_PAGE', payload: event.selected + 1 });
   };
 
-  const { fetchNotes,pinnedNotes, notes, handleDeleteNote, handleEditNote, handlePinNote, handleUnpinNote, totalPages, dispatch, currentPage } = useNotes();
+  const { fetchNotes,pinnedNotes, notes, handleDeleteNote, handleEditNote, handlePinToggle, totalPages, dispatch, currentPage } = useNotes();
 
 
   const [isLoading, setIsloading] = useState(false);
@@ -75,11 +75,11 @@ export default function Home() {
           <div className="md:max-h-xl">
             {/* Pinned Notes */}
             <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
-              {pinnedNotes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinNote, handleUnpinNote }} />)}
+              {pinnedNotes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinToggle }} />)}
             </div>
             {/* Notes */}
             <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
-              {notes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinNote, handleUnpinNote }} />)}
+              {notes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinToggle }} />)}
             </div>
             <div>
               <ReactPaginate

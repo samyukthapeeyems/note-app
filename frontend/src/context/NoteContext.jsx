@@ -67,7 +67,7 @@ export function NotesProvider({ children }) {
         }
     };
 
-    const handlePinNote = async (noteId) => {
+    const handlePinToggle = async (noteId) => {
         try {
             await pinNote(noteId);
             await fetchNotes(currentPage);
@@ -76,14 +76,14 @@ export function NotesProvider({ children }) {
         }
     };
 
-    const handleUnpinNote = async (noteId) => {
-        try {
-            await unpinNote(noteId);
-            await fetchNotes(currentPage);
-        } catch (error) {
-            console.error(error.message);
-        }
-    };
+    // const handleUnpinNote = async (noteId) => {
+    //     try {
+    //         await unpinNote(noteId);
+    //         await fetchNotes(currentPage);
+    //     } catch (error) {
+    //         console.error(error.message);
+    //     }
+    // };
 
     const contextValue = {
         notes,
@@ -94,8 +94,7 @@ export function NotesProvider({ children }) {
         fetchNotes,
         handleDeleteNote,
         handleEditNote,
-        handlePinNote,
-        handleUnpinNote,
+        handlePinToggle,
         handleCreateNote,
         dispatch,
     };

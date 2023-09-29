@@ -8,7 +8,7 @@ export default function Card({ note, actions }) {
     return (
         <>
             <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 opacity-100 bg-white shadow-lg squeeze-animation">
-                
+
 
 
                 <div class="px-6 py-4 ">
@@ -16,7 +16,7 @@ export default function Card({ note, actions }) {
                     <p class="text-gray-700 text-base">
                         {note.body}
                     </p>
-                    
+
                 </div>
                 <div class="px-6 pt-1">
                     <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">{note.tagline}</span>
@@ -57,10 +57,14 @@ export default function Card({ note, actions }) {
                         </svg>
                     </button>
 
-
-                    <button className="btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M387 128c-11.8 0-21.3 9.5-21.3 21.3v213.3c0 58.9-47.7 106.7-106.7 106.7s-106.7-47.8-106.7-106.7v-256c0-35.3 28.6-64 64-64s64 28.7 64 64V320c0 11.8-9.6 21.3-21.3 21.3s-21.3-9.5-21.3-21.3V149.3c0-11.8-9.6-21.3-21.3-21.3c-11.8 0-21.3 9.5-21.3 21.3V320c0 35.4 28.6 64 64 64s64-28.6 64-64V106.7C323 47.8 275.2 0 216.3 0S109.7 47.8 109.7 106.7v256c0 82.5 66.9 149.3 149.3 149.3s149.3-66.9 149.3-149.3V149.3c0-11.8-9.5-21.3-21.3-21.3z"/></svg>
-                </button>
+                    {/* pin */}
+                    <button className="btn" onClick={(event) => {
+                        console.log("ff")
+                        event.stopPropagation();
+                        actions.handlePinToggle(note._id)
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M387 128c-11.8 0-21.3 9.5-21.3 21.3v213.3c0 58.9-47.7 106.7-106.7 106.7s-106.7-47.8-106.7-106.7v-256c0-35.3 28.6-64 64-64s64 28.7 64 64V320c0 11.8-9.6 21.3-21.3 21.3s-21.3-9.5-21.3-21.3V149.3c0-11.8-9.6-21.3-21.3-21.3c-11.8 0-21.3 9.5-21.3 21.3V320c0 35.4 28.6 64 64 64s64-28.6 64-64V106.7C323 47.8 275.2 0 216.3 0S109.7 47.8 109.7 106.7v256c0 82.5 66.9 149.3 149.3 149.3s149.3-66.9 149.3-149.3V149.3c0-11.8-9.5-21.3-21.3-21.3z" /></svg>
+                    </button>
 
                     {/* labl */}
 

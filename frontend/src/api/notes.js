@@ -53,7 +53,7 @@ export const createNote = async (data) => {
 // Function to pin a note
 export const pinNote = async (noteId) => {
     try {
-        await axios.put(`${API_BASE_URL}/${noteId}/pin`);
+        await axios.patch(`${API_BASE_URL}/${noteId}/togglePin`);
     } catch (error) {
         throw new Error('Error pinning note:', error);
     }

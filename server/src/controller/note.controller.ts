@@ -1,12 +1,11 @@
 import Note from '../model/note.model';
 import { Request, Response } from 'express';
 import { CRequest } from '../middleware/pagination';
-import { Date } from 'mongoose';
 
 export const getAllNote = async (req: CRequest, res: Response) => {
     try {
         console.log(req.query.limit, req.query.page)
-        let result = await Note.find({}).skip(req.skip!) //Notice here
+        let result = await Note.find({}).where({ "pinnedTime": { $exists: false } }).skip(req.skip!) //Notice here
             .limit(req.query.limit!)
 
         let count = await Note.countDocuments();
