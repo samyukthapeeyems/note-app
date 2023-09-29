@@ -29,8 +29,7 @@ export const paginate = (limit: number, maxLimit: number) => {
     if (req.query.page < 1) req.query.page = 1;
     if (req.query.limit < 0) req.query.limit = 0;
 
-    req.skip = req.offset = (req.query.page * req.query.limit) 
-    // - req.query.limit;
+    req.skip = req.offset = (req.query.page * req.query.limit)  - req.query.limit;
 
     next();
   };
