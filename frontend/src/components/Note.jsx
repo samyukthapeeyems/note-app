@@ -1,41 +1,58 @@
 import ClickAwayListener from 'react-click-away-listener';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form"
 import './Note.css'
 import { useNotes } from '../context/NoteContext';
+import { COLORS } from '../constants/colours';
+import ColorPicker from './ColorPicker';
 
 export default function Note({ note, actions }) {
     const [showTextField, setShowTextField] = useState(false);
-
-    const { handleCreateNote } = useNotes();
-
-
-
-    const onSubmit = async (data) => {
-        await handleCreateNote(data);
-        // actions.closeEditModal();
-    }
-
+    const [color, setColor] = useState(note?.color || COLORS[0])
+    const { handleCreateNote, handleEditNote } = useNotes();
     const {
         register,
         handleSubmit,
-        watch,
+        reset,
         formState: { errors },
     } = useForm({
         defaultValues: {
             title: note?.title || '',
             tagline: note?.tagline || '',
-            body: note?.body || ''
+            body: note?.body || '',
         }
     })
 
-    function handleClickAway() {
-        setShowTextField(false)
+
+    const onSubmit = async (data) => {
+        let payload = { ...data, color }
+        if (!note)
+            await handleCreateNote(payload);
+        else
+            await handleEditNote(note._id, payload)
+        closeNoteOverlay()
     }
+
+    function closeNoteOverlay() {
+        reset()
+        setColor()
+        setShowTextField(false)
+        actions.closeEditModal()
+    }
+
+    useEffect(() => {
+        if (note) {
+            setShowTextField(true)
+        }
+    }, [note])
     return (
         <>
-            <ClickAwayListener onClickAway={handleClickAway} >
-                <div className="note-container">
+            <ClickAwayListener onClickAway={closeNoteOverlay} >
+                <div className="note-container" style={{
+                    backgroundColor: color,
+                }}
+
+                >
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {showTextField &&
                             <>
@@ -47,6 +64,7 @@ export default function Note({ note, actions }) {
                         {showTextField &&
                             <div class="action-bar">
                                 <button onClick={handleSubmit(onSubmit)} className="btn-submit">Save</button>
+                                <ColorPicker setColor={setColor}></ColorPicker>
                                 <button onClick={() => { }} class="btn-close">Close</button>
                             </div>
                         }

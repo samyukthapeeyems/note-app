@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Card from "../components/Card";
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
 import './home.css'
@@ -9,17 +8,18 @@ import LoadingScreen from "../components/LoadingScreen";
 import ReactPaginate from 'react-paginate';
 
 import Modal from 'react-modal';
+import Notes from "./Notes";
+import Note from "../components/Note";
 
 Modal.setAppElement('#root');
 
 export default function Home() {
 
   const handlePageClick = async (event) => {
-    console.log("ee", event.selected)
     dispatch({ type: 'SET_CURRENT_PAGE', payload: event.selected + 1 });
   };
 
-  const { fetchNotes,pinnedNotes, notes, handleDeleteNote, handleEditNote, handlePinToggle, totalPages, dispatch, currentPage } = useNotes();
+  const { fetchNotes, handleDeleteNote, handleEditNote, totalPages, dispatch } = useNotes();
 
 
   const [isLoading, setIsloading] = useState(false);
@@ -73,14 +73,16 @@ export default function Home() {
       {isLoading ? <LoadingScreen> </LoadingScreen> :
         <div className=" flex flex-col justify-evenly items-center ">
           <div className="md:max-h-xl">
-            {/* Pinned Notes */}
-            <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
-              {pinnedNotes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinToggle }} />)}
-            </div>
-            {/* Notes */}
-            <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
-              {notes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinToggle }} />)}
-            </div>
+            <Notes openEditModal={openEditModal} deleteNote={deleteNote} />
+
+
+            {/* {modalIsOpen &&
+              <div className="flex align-center justify-center">
+                <Note note={editNote} actions={{ closeEditModal }}></Note>
+              </div>
+            } */}
+
+
             <div>
               <ReactPaginate
                 containerClassName="pagination-class"
@@ -130,6 +132,8 @@ export default function Home() {
                 }
               }}
             >
+
+
               <Form note={editNote} actions={{ closeEditModal, handleEditNote }}></Form>
             </Modal>
           </div>

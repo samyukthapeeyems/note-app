@@ -7,7 +7,11 @@ export default function Card({ note, actions }) {
 
     return (
         <>
-            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 opacity-100 bg-white shadow-lg squeeze-animation">
+            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 shadow-lg squeeze-animation"
+            style={{
+                backgroundColor: note.color
+            }}
+            >
 
 
 
