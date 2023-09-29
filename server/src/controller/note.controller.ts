@@ -4,8 +4,16 @@ import { CRequest } from '../middleware/pagination';
 
 export const getAllNote = async (req: CRequest, res: Response) => {
     try {
-        let result = await Note.find({});
-        res.status(200).json(result);
+        let result = await Note.find({}).skip(req.skip!) //Notice here
+            .limit(req.query.limit!)
+
+        let count = await Note.countDocuments();
+        res.status(200).json({
+            total: count,
+            page: req.query.page,
+            pageSize: result.length,
+            notes: result
+        });
     }
     catch (e) {
         res.status(500).json({
