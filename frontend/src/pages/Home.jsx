@@ -23,6 +23,8 @@ export default function Home() {
   const [editNote, setEditNote] = useState({})
   const [alertProps, setAlertProps] = useState(undefined)
 
+
+
   let subtitle;
 
   function openEditModal(note) {
@@ -130,6 +132,7 @@ export default function Home() {
                 await alertProps.handleReject(...alertProps.handleRejectParams)
                 if (alertProps) setAlertProps(undefined)
               }}
+            
             />
           )}
       

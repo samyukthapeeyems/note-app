@@ -8,24 +8,7 @@ export default function Card({ note, actions }) {
     return (
         <>
             <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 opacity-100 bg-white shadow-lg squeeze-animation">
-                {/* <button className="btn">
-                <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`icon-sm transform ${
-                note.isPinned === true ? "-rotate-45" : ""
-              }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-              />
-            </svg>
-                </button> */}
+                
 
 
                 <div class="px-6 py-4 ">
@@ -74,6 +57,11 @@ export default function Card({ note, actions }) {
                         </svg>
                     </button>
 
+
+                    <button className="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M387 128c-11.8 0-21.3 9.5-21.3 21.3v213.3c0 58.9-47.7 106.7-106.7 106.7s-106.7-47.8-106.7-106.7v-256c0-35.3 28.6-64 64-64s64 28.7 64 64V320c0 11.8-9.6 21.3-21.3 21.3s-21.3-9.5-21.3-21.3V149.3c0-11.8-9.6-21.3-21.3-21.3c-11.8 0-21.3 9.5-21.3 21.3V320c0 35.4 28.6 64 64 64s64-28.6 64-64V106.7C323 47.8 275.2 0 216.3 0S109.7 47.8 109.7 106.7v256c0 82.5 66.9 149.3 149.3 149.3s149.3-66.9 149.3-149.3V149.3c0-11.8-9.5-21.3-21.3-21.3z"/></svg>
+                </button>
+
                     {/* labl */}
 
                     <button className="btn">
@@ -102,7 +90,7 @@ export default function Card({ note, actions }) {
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon-sm text-gray-600"
                             fill="none"
-                            viewBox="0 0 24 24"
+                            viewBox="0 0 25 25"
                             stroke="currentColor"
                         >
                             <path

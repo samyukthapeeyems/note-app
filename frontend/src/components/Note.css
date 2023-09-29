@@ -1,6 +1,6 @@
 .note-container{
     @layer flex-cols;
-    @apply  bg-white rounded shadow-lg text-sm lg:flex-grow p-2 w-1/2 h-auto;
+    @apply  bg-white rounded shadow-lg text-sm p-2 w-1/2 h-auto;
 }
 
 .text-input {
