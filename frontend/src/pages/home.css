@@ -7,7 +7,7 @@
 }
 
 .chevron-btn{
-    @apply flex items-center p-1 rounded-full hover:bg-gray-300 squeeze-animation ;
+    @apply flex items-center p-1 rounded-full hover:bg-blue-600 hover:bg-opacity-30 squeeze-animation ;
 }
 
 .ReactModal__Overlay {

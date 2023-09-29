@@ -15,15 +15,10 @@ function App() {
 
   return (
     <>
-      <div style={{backgroundImage: `url(${imgUrl})`}} className='h-screen w-screen bg-cover '>
+      <div className='h-screen w-screen bg-gray-100'>
     <Home></Home>
 
     </div>
-
-
-     
-
-      
 
     </>
   )

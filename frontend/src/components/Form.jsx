@@ -23,11 +23,11 @@ export default function Form({ note, actions }) {
       <div class="w-full  border-0 rounded-lg bg-white ">
         <div class="px-4 py-4 bg-white rounded-t-lg">
           <label for="title" class="sr-only ">Title</label>
-          <input id="title" class="w-full px-0 text-md font-bold text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Title" defaultValue={note.title} {...register("title")} />
+          <input id="title" class="w-full px-0 text-lg font-bold text-gray-700 bg-white border-0 outline-0 focus:ring-0  dark:placeholder-gray-400" placeholder="Title" defaultValue={note.title} {...register("title")} />
         </div>
         <div class="px-4 py-1 bg-white ">
           <label for="tagline" class="sr-only">Tagline</label>
-          <input id="tagline" class="w-full px-0 text-sm text-gray-900 bg-white border-0 outline-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Tagline" defaultValue={note.tagline} {...register("tagline")}/>
+          <input id="tagline" class="w-full px-0 text-md font-semibold text-gray-700 bg-white border-0 outline-0 focus:ring-0  dark:placeholder-gray-400" placeholder="Tagline" defaultValue={note.tagline} {...register("tagline")}/>
         </div>
         <div class="px-4 py-10 bg-white ">
           <label for="body" class="sr-only">Body</label>

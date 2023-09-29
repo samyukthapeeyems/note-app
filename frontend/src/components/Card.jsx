@@ -7,7 +7,7 @@ export default function Card({ note, actions }) {
 
     return (
         <>
-            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden border border-amber-800 border-opacity-10 m-5 bg-amber-800 bg-opacity-10 backdrop-blur-lg drop-shadow-lg squeeze-animation">
+            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 opacity-100 bg-white shadow-lg squeeze-animation">
                 {/* <button className="btn">
                 <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -29,13 +29,14 @@ export default function Card({ note, actions }) {
 
 
                 <div class="px-6 py-4 ">
-                    <div class="font-bold text-gray-800 text-xl mb-2">{note.title}</div>
+                    <div class="font-bold text-gray-800 text-xl mb-2 ">{note.title}</div>
                     <p class="text-gray-700 text-base">
                         {note.body}
                     </p>
+                    
                 </div>
                 <div class="px-6 pt-1">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">{note.tagline}</span>
+                    <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">{note.tagline}</span>
                 </div>
 
 

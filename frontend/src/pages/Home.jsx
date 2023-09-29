@@ -68,7 +68,7 @@ export default function Home() {
 
       <Navbar />
       {isLoading ? <LoadingScreen> </LoadingScreen> :
-        <div className=" flex flex-col justify-center items-center">
+        <div className=" flex flex-col justify-evenly items-center ">
           <div className="md:max-h-xl">
             <div id="notes" class=" container grid grid-cols-1 mx-10 md:mx-20 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 justify-center items-center px-4 md:px-10 ">
               {notes.map((note) => <Card note={note} actions={{ openEditModal, deleteNote, handlePinNote, handleUnpinNote }} />)}
@@ -84,11 +84,12 @@ export default function Home() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  
 
                 },
                 content: {
                   inset: "0px",
-                  padding: 0,
+                  padding: "20px",
                   margin: 0,
                   position: "relative",
                   width: "40%",
@@ -104,15 +105,15 @@ export default function Home() {
 
 
 
-          <div className="flex">
+          <div className="flex ">
             <button class="chevron-btn ml-5">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m15 6l-6 6l6 6" />
               </svg>
             </button>
 
             <button class="chevron-btn mr-5">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" color="rgb(55 65 81)">
                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 6l6 6l-6 6" />
               </svg>
             </button>
