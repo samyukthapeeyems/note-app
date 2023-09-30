@@ -34,10 +34,18 @@ export default function Note({ note, actions }) {
     }
 
     function closeNoteOverlay() {
+        textareaRow()
         reset()
         setColor()
         setShowTextField(false)
         actions.closeEditModal()
+        
+    }
+
+    function textareaRow() {
+        document.getElementById("body").rows = "1"
+        document.getElementById("body").classList.remove("py-5")
+
     }
 
     useEffect(() => {
@@ -48,7 +56,7 @@ export default function Note({ note, actions }) {
     return (
         <>
             <ClickAwayListener onClickAway={closeNoteOverlay} >
-                <div className="note-container" style={{
+                <div className="note-container " style={{
                     backgroundColor: color,
                 }}
 
@@ -60,12 +68,20 @@ export default function Note({ note, actions }) {
                                 <input className="tagline-input" id="tagline" type="text" placeholder="Tagline" {...register("tagline")} />
                             </>
                         }
-                        <textarea rows="1" className="body-input" id="body" type="text" placeholder="Add a note..." onFocus={() => setShowTextField(true)} {...register("body")} />
+                        <textarea rows="1" className="body-input" id="body" type="text" placeholder="Add a note..." 
+                        onFocus={() => {
+                            document.getElementById("body").rows = "4" 
+                            document.getElementById("body").classList.add("py-5")
+                            setShowTextField(true);
+                            }} 
+                            {...register("body")}/>
                         {showTextField &&
                             <div class="action-bar">
                                 <button onClick={handleSubmit(onSubmit)} className="btn-submit">Save</button>
                                 <ColorPicker setColor={setColor}></ColorPicker>
-                                <button onClick={() => { }} class="btn-close">Close</button>
+                                <button onClick={() => {
+                                     textareaRow();
+                                     }} class="btn-close">Close</button>
                             </div>
                         }
                     </form>

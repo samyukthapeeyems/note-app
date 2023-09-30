@@ -1,6 +1,6 @@
 .note-container{
     @layer flex-cols;
-    @apply  bg-transparent rounded-lg shadow-lg text-sm p-2 w-1/2 h-auto;
+    @apply  bg-transparent rounded-lg shadow-lg text-sm p-2 w-1/2 h-auto ;
 }
 
 .title-input {
@@ -32,3 +32,4 @@
 .btn-close {
     @apply bg-gray-400 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded;
 }
+

@@ -27,7 +27,7 @@ export default function Card({ note, actions }) {
 
                 <div className="flex w-full h-12 align-middle justify-end px-2.5 py-1">
 
-                    {displayColorPicker && <ColorPicker></ColorPicker>}
+                    {/* {displayColorPicker && <ColorPicker></ColorPicker>}
                     <button className="btn" onClick={(event) => {
                         event.stopPropagation();
                         setDisplayColorPicker(true)
@@ -35,7 +35,7 @@ export default function Card({ note, actions }) {
                         onBlur={() => setDisplayColorPicker(false)}
                     >
                         <ColorIcon></ColorIcon>
-                    </button>
+                    </button> */}
 
                     {/* PIN */}
                     <button className="btn" onClick={(event) => {
