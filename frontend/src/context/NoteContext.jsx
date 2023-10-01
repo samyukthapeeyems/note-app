@@ -8,6 +8,8 @@ export function useNotes() {
     return useContext(NotesContext);
 }
 
+let MAX_ITEMS = 4;
+
 export function NotesProvider({ children }) {
     const initialState = {
         notes: [],
@@ -27,8 +29,9 @@ export function NotesProvider({ children }) {
 
     const fetchNotes = async (page) => {
         try {
-            const data = await getNotes(page, 4);
             const pinned = await getPinnedNotes();
+            MAX_ITEMS = pinned.length == 0 ? 6 : pinned.length == 1 ? 5 : 4
+            const data = await getNotes(page, MAX_ITEMS);
             dispatch({ type: 'SET_NOTES', payload: data.notes });
             dispatch({ type: 'SET_PINNED_NOTES', payload: pinned });
             dispatch({ type: 'SET_TOTAL_PAGES', payload: data.total/4 });

@@ -1,20 +1,17 @@
-import { useState } from "react";
-import ColorPicker from "./ColorPicker";
-import { ColorIcon, PinIcon, TrashIcon } from "../assets/Icons";
+import { PinIcon, TrashIcon } from "../assets/Icons";
 
 export default function Card({ note, actions }) {
-    const [displayColorPicker, setDisplayColorPicker] = useState(false)
 
     return (
         <>
-            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 shadow-lg squeeze-animation"
+            <div onClick={() => actions.openEditModal(note)} className="max-w-sm rounded-xl overflow-hidden m-5 mb-0 shadow-lg squeeze-animation"
                 style={{
                     backgroundColor: note.color
                 }}
             >
                 <div class="px-6 py-4 ">
                     <div class="font-bold text-gray-800 text-xl mb-2 ">{note.title}</div>
-                    <p class="text-gray-700 text-base">
+                    <p class="text-gray-700 text-base line-clamp-3">
                         {note.body}
                     </p>
 
@@ -26,16 +23,6 @@ export default function Card({ note, actions }) {
                 {/* COLOR */}
 
                 <div className="flex w-full h-12 align-middle justify-end px-2.5 py-1">
-
-                    {/* {displayColorPicker && <ColorPicker></ColorPicker>}
-                    <button className="btn" onClick={(event) => {
-                        event.stopPropagation();
-                        setDisplayColorPicker(true)
-                    }}
-                        onBlur={() => setDisplayColorPicker(false)}
-                    >
-                        <ColorIcon></ColorIcon>
-                    </button> */}
 
                     {/* PIN */}
                     <button className="btn" onClick={(event) => {

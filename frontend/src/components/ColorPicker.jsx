@@ -7,7 +7,7 @@ export default function ColorPicker({ setColor }) {
         <li
           key={c}
           onClick={(e) => setColor(c)}
-          className="color cursor-pointer w-6 h-6 rounded-full border hover:border-gray-500 flex items-center justify-center"
+          className="color cursor-pointer w-6 h-6 rounded-full border border-slate-400 hover:border-gray-500 flex items-center justify-center"
           style={{
             background: c,
           }}

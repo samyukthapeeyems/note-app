@@ -19,7 +19,7 @@ export default function Form({ note, actions }) {
   } = useForm()
 
   const onSubmit = async (data) => {
-    await actions.handleEditNote(note._id, data);
+    await actions.handleEditNote(note._id, {...data, color});
     actions.closeEditModal();
   }
 

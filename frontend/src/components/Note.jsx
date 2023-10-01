@@ -1,15 +1,16 @@
 import ClickAwayListener from 'react-click-away-listener';
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form"
-import './Note.css'
+import './Note.css';
 import { useNotes } from '../context/NoteContext';
 import { COLORS } from '../constants/colours';
 import ColorPicker from './ColorPicker';
 
 export default function Note({ note, actions }) {
     const [showTextField, setShowTextField] = useState(false);
-    const [color, setColor] = useState(note?.color || COLORS[0])
+    const [color, setColor] = useState(note?.color || COLORS[0]);
     const { handleCreateNote, handleEditNote } = useNotes();
+
     const {
         register,
         handleSubmit,
@@ -38,8 +39,8 @@ export default function Note({ note, actions }) {
         reset()
         setColor()
         setShowTextField(false)
-        actions.closeEditModal()
-        
+        actions?.closeEditModal()
+
     }
 
     function textareaRow() {
@@ -56,9 +57,11 @@ export default function Note({ note, actions }) {
     return (
         <>
             <ClickAwayListener onClickAway={closeNoteOverlay} >
-                <div className="note-container " style={{
-                    backgroundColor: color,
-                }}
+                <div className={`note-container transition-transform duration-300 ease-in-out transform hover:scale-105`} style={{
+                        backgroundColor: color,
+                    }}
+
+                    
 
                 >
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,20 +71,20 @@ export default function Note({ note, actions }) {
                                 <input className="tagline-input" id="tagline" type="text" placeholder="Tagline" {...register("tagline")} />
                             </>
                         }
-                        <textarea rows="1" className="body-input" id="body" type="text" placeholder="Add a note..." 
-                        onFocus={() => {
-                            document.getElementById("body").rows = "4" 
-                            document.getElementById("body").classList.add("py-5")
-                            setShowTextField(true);
-                            }} 
-                            {...register("body")}/>
+                        <textarea rows="1" className="body-input" id="body" type="text" placeholder="Add a note..."
+                            onFocus={() => {
+                                document.getElementById("body").rows = "4"
+                                document.getElementById("body").classList.add("py-5")
+                                setShowTextField(true);
+                            }}
+                            {...register("body")} />
                         {showTextField &&
                             <div class="action-bar">
                                 <button onClick={handleSubmit(onSubmit)} className="btn-submit">Save</button>
                                 <ColorPicker setColor={setColor}></ColorPicker>
                                 <button onClick={() => {
-                                     textareaRow();
-                                     }} class="btn-close">Close</button>
+                                    textareaRow();
+                                }} class="btn-close">Close</button>
                             </div>
                         }
                     </form>
